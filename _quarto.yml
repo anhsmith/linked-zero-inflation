@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+
+website:
+  title: "Linked zero inflation in brms"
+  site-url: "https://anhsmith.github.io/linked-zero-inflation/"
+  repo-url: "https://github.com/anhsmith/linked-zero-inflation"
+  repo-actions: [source, issue]
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-overflow: wrap
+
+# Results are computed locally and stored in _freeze/, which is committed, so the
+# GitHub Actions build publishes them without R, brms, or Stan.
+execute:
+  freeze: auto

@@ -1,0 +1,23 @@
+# Source papers and supplements (copyright of the publishers).
+literature/
+
+# Fitted models, rebuilt by a local render. The published results are in _freeze/,
+# which IS committed.
+fits/
+
+# Rendered site, built by GitHub Actions.
+/_site/
+
+# Quarto and R scratch.
+/.quarto/
+/index_cache/
+*_files/
+/.Rproj.user/
+.Rhistory
+
+**/*.quarto_ipynb
+.Rproj.user
+.RData
+.httr-oauth
+.DS_Store
+.quarto

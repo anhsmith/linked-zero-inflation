@@ -1,0 +1,604 @@
+---
+title: "Linked zero inflation in brms"
+author: "Adam N. H. Smith"
+date: last-modified
+bibliography: references.bib
+knitr:
+  opts_chunk:
+    dev: "svg"
+    message: false
+    warning: false
+---
+
+```{r setup}
+#| include: false
+
+library(brms)
+library(ggplot2)
+library(knitr)
+
+options(
+  brms.backend = "cmdstanr",
+  mc.cores     = 4
+)
+dir.create("fits", showWarnings = FALSE)
+
+# Median and 95% interval of a vector of draws, as "m (lo to hi)", with an
+# optional label inside the brackets and a typographic minus sign.
+ci <- function(x, digits = 2, label = "") {
+  q <- quantile(x, c(0.5, 0.025, 0.975))
+  f <- gsub("-", "−", formatC(q, format = "f", digits = digits))
+  sprintf("%s (%s%s to %s)", f[1], label, f[2], f[3])
+}
+pct <- function(x) {
+  sprintf("%.0f", 100 * x)
+}
+
+# Settings shared by every fit.
+fit_args <- list(
+  chains    = 4,
+  iter      = 3000,
+  warmup    = 1000,
+  control   = list(adapt_delta = 0.99),
+  refresh   = 0,
+  silent    = 2,
+  file_refit = "on_change"
+)
+```
+
+# Linked zero inflation
+
+This vignette provides code for fitting the linked zero-inflated model of @smith2012 in brms [@burkner2017] and Stan, in place of the OpenBUGS code published with the original papers.
+In the linked model, the probability of an excess zero, $\pi$, is a logistic function of the log of the mean of the count distribution, $\lambda$:
+$$
+\text{logit}(\pi_i) = \gamma_0 + \gamma_1 \log(\lambda_i),
+$$
+where $i$ indexes observations and $\gamma_0$ and $\gamma_1$ are parameters to be estimated.
+Smith et al. [-@smith2012; -@smith2014] supplied R and OpenBUGS [@lunn2009] code for fitting this model, but OpenBUGS has now largely been superseded by more modern software.
+In brms, the model requires only the zero-inflated negative binomial family that brms provides and a non-linear formula [@burkner2018], with no custom family or Stan code, and the functions for prediction and model checking (`posterior_epred()`, `posterior_predict()`, `loo()`, and `pp_check()`) work on the fitted model without modification.
+
+@smith2014 applied the linked model to counts of legal-sized snapper, *Chrysophrys auratus* (Sparidae), formerly *Pagrus auratus*, from 1,045 baited underwater video deployments in and around three marine reserves in north-eastern New Zealand, where the linked model was the form of zero inflation selected by the deviance information criterion (DIC).
+For sublegal snapper in the same study, DIC selected a separate linear predictor for $\pi$.
+The example here uses the deployments at one of the three reserves, Te Whanganui-A-Hei (Hahei) Marine Reserve, which are also the data analysed by @smith2012.
+
+Zero-inflated models for counts of organisms add to a count distribution a probability, $\pi$, that an observation is an excess zero, so that the mean count is $(1 - \pi)\lambda$ [@lambert1992].
+In most applications, $\pi$ is either held constant or given a linear predictor of its own.
+A constant $\pi$ makes no use of any relationship between $\pi$ and $\lambda$.
+A separate linear predictor adds a coefficient for every term in it and splits the effect of each predictor between $\pi$ and $\lambda$, and @smith2014 found that this split made the spatial effects for sublegal snapper difficult to interpret.
+@smith2012 followed @lambert1992 in using a single linear predictor for both $\pi$ and $\lambda$.
+
+For many species, the proportion of sites occupied increases with mean abundance [@brown1984; @borregaard2010].
+A model in which $\pi$ decreases as $\lambda$ increases incorporates this intraspecific occupancy–abundance relationship directly, and adds only two parameters, $\gamma_0$ and $\gamma_1$, whatever the number of predictors for $\lambda$.
+A negative $\gamma_1$ gives fewer excess zeros where the mean count is higher, and $\gamma_1 = 0$ reduces the model to a constant probability of an excess zero.
+
+# Specification in brms
+
+The linear predictor for $\log(\lambda)$ is declared as a non-linear parameter, `eta`, which then enters both the formula for the mean and the formula for `zi`, the brms name for $\pi$.
+The zero-inflated negative binomial family in brms has a log link for the mean and a logit link for `zi`, so each formula is written on the scale of its linear predictor, and `zi ~ g0 + g1 * eta` is the linked model of @smith2012.
+The two parameters of the link, `g0` and `g1`, are non-linear parameters, each with an intercept only.
+
+```{r make-formula}
+f_linked <- bf(
+  count ~ eta,
+  nlf(zi ~ g0 + g1 * eta),
+  eta ~ reserve + season + (1 | area) + (1 | year),
+  g0 ~ 1,
+  g1 ~ 1,
+  nl = TRUE
+)
+```
+
+A non-linear model in brms requires a proper prior on every non-linear parameter, so the coefficients of `eta`, `g0`, and `g1` each need one.
+We used Normal(0, 2.5) priors for these coefficients, which are weakly informative on the log scale of $\lambda$ and the logit scale of $\pi$, a half-Student-t prior with 3 degrees of freedom and scale 2.5 for the standard deviations of the random effects, and Gamma(0.01, 0.01), the brms default, for the shape parameter of the negative binomial.
+Because $\gamma_1$ multiplies $\log(\lambda)$, rescaling the counts shifts $\log(\lambda)$ by a constant, which changes $\gamma_0$ but not $\gamma_1$, so a prior for $\gamma_1$ does not depend on the units of the counts.
+
+```{r make-priors}
+pr_linked <- c(
+  prior(normal(0, 2.5), nlpar = "eta"),
+  prior(normal(0, 2.5), nlpar = "g0"),
+  prior(normal(0, 2.5), nlpar = "g1"),
+  prior(student_t(3, 0, 2.5), class = "sd", nlpar = "eta"),
+  prior(gamma(0.01, 0.01), class = "shape")
+)
+```
+
+# Snapper in and around Te Whanganui-A-Hei (Hahei) Marine Reserve
+
+```{r make-data}
+snapper <- read.csv(
+  "data/snapper-hahei.csv",
+  colClasses = c(
+    count   = "integer",
+    reserve = "character",
+    area    = "character",
+    year    = "character",
+    season  = "character"
+  )
+)
+snapper <- transform(
+  snapper,
+  reserve = factor(reserve, levels = c("outside", "inside")),
+  season  = factor(season, levels = c("spring", "autumn")),
+  area    = factor(area),
+  year    = factor(year)
+)
+stopifnot(
+  nrow(snapper) == 348,
+  sum(snapper$count == 0) == 191,
+  nlevels(snapper$area) == 6,
+  nlevels(snapper$year) == 9
+)
+
+n_obs     <- nrow(snapper)
+zero_all  <- mean(snapper$count == 0)
+zero_out  <- mean(snapper$count[snapper$reserve == "outside"] == 0)
+zero_in   <- mean(snapper$count[snapper$reserve == "inside"] == 0)
+mean_out  <- mean(snapper$count[snapper$reserve == "outside"])
+mean_in   <- mean(snapper$count[snapper$reserve == "inside"])
+n_area_in <- length(unique(snapper$area[snapper$reserve == "inside"]))
+```
+
+The example data are counts of legal-sized snapper (fork length greater than 27 cm) from `r n_obs` baited underwater video deployments made inside and outside Te Whanganui-A-Hei (Hahei) Marine Reserve between 1997 and 2010.
+Each count is the maximum number of legal-sized snapper seen in any one frame of a 30 min video (MaxN), which is a measure of relative density, not absolute density.
+The deployments were spread over `r nlevels(snapper$area)` areas, `r n_area_in` inside the reserve and `r nlevels(snapper$area) - n_area_in` outside, in `r nlevels(snapper$year)` years and two seasons (spring and autumn), in an unbalanced design.
+The file `data/snapper-hahei.csv` was built from the supplement to @smith2012 by `data-raw/make-snapper-hahei.R`, which checks that the counts agree with the Hahei subset of the supplement to @smith2014.
+
+Zeros made up `r pct(zero_all)`% of the counts: `r pct(zero_out)`% of those outside the reserve, where the mean count was `r sprintf("%.2f", mean_out)`, and `r pct(zero_in)`% of those inside, where the mean count was `r sprintf("%.2f", mean_in)`.
+
+Following @smith2012, the model for $\log(\lambda)$ included reserve status and season as fixed effects, and area and year as random effects.
+
+```{r make-fit-linked}
+fit_linked <- do.call(
+  brm,
+  c(
+    list(
+      formula = f_linked,
+      data    = snapper,
+      family  = zero_inflated_negbinomial(),
+      prior   = pr_linked,
+      seed    = 2012,
+      file    = "fits/fit-linked"
+    ),
+    fit_args
+  )
+)
+```
+
+```{r make-diagnostics}
+diagnose <- function(fit) {
+  np <- nuts_params(fit)
+  list(
+    rhat_max  = max(rhat(fit), na.rm = TRUE),
+    n_div     = sum(np$Value[np$Parameter == "divergent__"]),
+    n_draws   = ndraws(fit)
+  )
+}
+dg_linked <- diagnose(fit_linked)
+stopifnot(dg_linked$rhat_max < 1.01)
+```
+
+Four chains of 2,000 post-warmup draws each were run with `adapt_delta = 0.99`.
+The largest $\hat{R}$ was `r sprintf("%.3f", dg_linked$rhat_max)`, and `r ifelse(dg_linked$n_div == 0, "none", dg_linked$n_div)` of the `r format(dg_linked$n_draws, big.mark = ",")` post-warmup transitions were divergent.
+
+```{r make-ppc-zeros}
+zeros_pred <- function(fit) {
+  rowSums(posterior_predict(fit) == 0)
+}
+zp_linked <- zeros_pred(fit_linked)
+```
+
+The posterior predictive distribution of the number of zeros had a median of `r ci(zp_linked, 0, "95% interval ")`, against `r sum(snapper$count == 0)` observed.
+
+The predicted mean count, $(1 - \pi)\lambda$, for each area and season, averaged over the years in which that combination was sampled, is shown with the observed counts in @fig-data.
+
+```{r fig-data}
+#| fig-width: 7
+#| fig-height: 4
+#| fig-cap: "Counts of legal-sized snapper (MaxN) from baited underwater video deployments in each of the six areas at Te Whanganui-A-Hei (Hahei), numbered in order along the coast, pooled over years, with spring and autumn side by side within each area. Areas inside the marine reserve are shaded pale yellow. Each small point is one deployment, jittered horizontally and slightly vertically so that tied counts remain visible. Each large point and vertical line is the posterior median and 95% credible interval of the mean count predicted by the linked model for that area and season, averaged over the years in which the combination was sampled. The vertical axis is on a square-root scale, which compresses large counts. Each predicted mean count therefore sits higher than the middle of the points."
+# Positions of the areas inside the reserve on the horizontal axis.
+area_levels <- levels(snapper$area)
+inside_pos  <- which(area_levels %in% unique(as.character(snapper$area[snapper$reserve == "inside"])))
+stopifnot(all(diff(inside_pos) == 1))
+
+# Predicted mean count for each sampled area x year x season combination, averaged
+# over years within each area and season, then summarised over draws.
+cells_ays <- unique(snapper[, c("area", "reserve", "year", "season")])
+mu_ays    <- posterior_epred(fit_linked, newdata = cells_ays)
+key       <- interaction(cells_ays$area, cells_ays$season, drop = TRUE, sep = "|")
+pred_as   <- do.call(
+  rbind,
+  lapply(
+    levels(key),
+    function(k) {
+      m <- rowMeans(mu_ays[, key == k, drop = FALSE])
+      parts <- strsplit(k, "|", fixed = TRUE)[[1]]
+      data.frame(
+        area   = parts[1],
+        season = parts[2],
+        med    = median(m),
+        lo     = quantile(m, 0.025),
+        hi     = quantile(m, 0.975)
+      )
+    }
+  )
+)
+pred_as$area   <- factor(pred_as$area, levels = area_levels)
+pred_as$season <- factor(pred_as$season, levels = levels(snapper$season))
+stopifnot(nrow(pred_as) == nlevels(snapper$area) * nlevels(snapper$season))
+
+season_cols <- c(
+  spring = "#009E73",
+  autumn = "#D55E00"
+)
+
+set.seed(1)
+ggplot() +
+  annotate(
+    "rect",
+    xmin = min(inside_pos) - 0.5,
+    xmax = max(inside_pos) + 0.5,
+    ymin = -Inf,
+    ymax = Inf,
+    fill = "#FFF5C2"
+  ) +
+  geom_point(
+    data = snapper,
+    aes(
+      x      = area,
+      y      = sqrt(count),
+      colour = season
+    ),
+    position = position_jitterdodge(
+      jitter.width  = 0.2,
+      jitter.height = 0.15,
+      dodge.width   = 0.7
+    ),
+    alpha = 0.4,
+    size  = 1.1
+  ) +
+  geom_pointrange(
+    data = pred_as,
+    aes(
+      x     = area,
+      y     = sqrt(med),
+      ymin  = sqrt(lo),
+      ymax  = sqrt(hi),
+      fill  = season,
+      group = season
+    ),
+    position  = position_dodge(width = 0.7),
+    shape     = 21,
+    colour    = "black",
+    size      = 0.6,
+    linewidth = 0.8
+  ) +
+  # The square root is taken in aes() rather than with scale_y_sqrt(), which would
+  # turn the -Inf limit of the shaded rectangle into NaN and drop it.
+  scale_y_continuous(
+    breaks = sqrt(c(0, 1, 5, 10, 20, 30)),
+    labels = c(0, 1, 5, 10, 20, 30)
+  ) +
+  scale_colour_manual(
+    values = season_cols
+  ) +
+  scale_fill_manual(
+    values = season_cols
+  ) +
+  labs(
+    x      = "Area",
+    y      = "Legal-sized snapper per deployment (MaxN)",
+    colour = "Season",
+    fill   = "Season"
+  ) +
+  theme_bw()
+```
+
+# Comparison with negative binomial and constant zero-inflation models
+
+To check whether the link improved the model, we fitted two alternatives with the same predictors for $\lambda$ and the same priors: a negative binomial model with no zero inflation, and a zero-inflated negative binomial model with constant $\pi$.
+
+```{r make-fit-alternatives}
+pr_glm <- c(
+  prior(normal(0, 2.5), class = "b"),
+  prior(normal(0, 2.5), class = "Intercept"),
+  prior(student_t(3, 0, 2.5), class = "sd"),
+  prior(gamma(0.01, 0.01), class = "shape")
+)
+fit_nb <- do.call(
+  brm,
+  c(
+    list(
+      formula = bf(count ~ reserve + season + (1 | area) + (1 | year)),
+      data    = snapper,
+      family  = negbinomial(),
+      prior   = pr_glm,
+      seed    = 1,
+      file    = "fits/fit-nb"
+    ),
+    fit_args
+  )
+)
+fit_constant <- do.call(
+  brm,
+  c(
+    list(
+      formula = bf(
+        count ~ reserve + season + (1 | area) + (1 | year),
+        zi ~ 1
+      ),
+      data    = snapper,
+      family  = zero_inflated_negbinomial(),
+      prior   = c(
+        pr_glm,
+        prior(normal(0, 2.5), class = "Intercept", dpar = "zi")
+      ),
+      seed    = 2,
+      file    = "fits/fit-constant"
+    ),
+    fit_args
+  )
+)
+dg_nb       <- diagnose(fit_nb)
+dg_constant <- diagnose(fit_constant)
+stopifnot(
+  dg_nb$rhat_max < 1.01,
+  dg_constant$rhat_max < 1.01
+)
+```
+
+```{r make-loo}
+#| cache: true
+#| cache.extra: !expr tools::md5sum(c("fits/fit-linked.rds", "fits/fit-nb.rds", "fits/fit-constant.rds"))
+# PSIS-LOO for each model. Observations with Pareto k above 0.7 are handled by
+# refitting the model without them (reloo), and the number of such observations
+# is kept for the text. The chunk is cached, and the cache is invalidated when any
+# of the three fit files changes, so the reloo refits run only once.
+loo_checked <- function(fit) {
+  l      <- loo(fit)
+  n_high <- sum(l$diagnostics$pareto_k > 0.7)
+  if (n_high > 0) {
+    l <- loo(fit, reloo = TRUE)
+  }
+  list(
+    loo    = l,
+    n_high = n_high
+  )
+}
+lc_linked   <- loo_checked(fit_linked)
+lc_nb       <- loo_checked(fit_nb)
+lc_constant <- loo_checked(fit_constant)
+
+cmp <- as.data.frame(
+  loo_compare(
+    list(
+      linked   = lc_linked$loo,
+      constant = lc_constant$loo,
+      nb       = lc_nb$loo
+    )
+  )
+)
+# Depending on the version of loo, the model names are the row names or a column.
+if (!"model" %in% names(cmp)) {
+  cmp$model <- rownames(cmp)
+}
+d_constant  <- -cmp$elpd_diff[cmp$model == "constant"]
+se_constant <- cmp$se_diff[cmp$model == "constant"]
+d_nb        <- -cmp$elpd_diff[cmp$model == "nb"]
+se_nb       <- cmp$se_diff[cmp$model == "nb"]
+n_high <- c(
+  linked   = lc_linked$n_high,
+  constant = lc_constant$n_high,
+  nb       = lc_nb$n_high
+)
+
+# The text below states that the linked model ranked first and that each
+# difference was less than twice its standard error.
+stopifnot(
+  cmp$model[1] == "linked",
+  d_constant > 0,
+  d_nb > 0,
+  d_constant < 2 * se_constant,
+  d_nb < 2 * se_nb
+)
+
+# Sentence on Pareto k for the text.
+model_names <- c(
+  linked   = "the linked model",
+  constant = "the model with constant $\\pi$",
+  nb       = "the negative binomial model"
+)
+k_text <- if (all(n_high == 0)) {
+  "All Pareto $k$ values were below 0.7, the threshold above which PSIS-LOO estimates are unreliable [@vehtari2017]."
+} else {
+  hi  <- n_high[n_high > 0]
+  txt <- paste(
+    sprintf(
+      "%s observation%s in %s",
+      ifelse(hi == 1, "one", as.character(hi)),
+      ifelse(hi == 1, "", "s"),
+      model_names[names(hi)]
+    ),
+    collapse = " and "
+  )
+  paste0(
+    toupper(substr(txt, 1, 1)),
+    substr(txt, 2, nchar(txt)),
+    " had a Pareto $k$ value above 0.7, the threshold above which PSIS-LOO estimates are unreliable [@vehtari2017], and the contribution of each such observation was computed by refitting the model without it (`reloo = TRUE`)."
+  )
+}
+
+zp_nb       <- zeros_pred(fit_nb)
+zp_constant <- zeros_pred(fit_constant)
+pi_constant <- plogis(as_draws_df(fit_constant)$b_zi_Intercept)
+```
+
+Expected log predictive density, estimated by Pareto-smoothed importance-sampling leave-one-out cross-validation [PSIS-LOO, @vehtari2017], was greatest for the linked model, exceeding that of the model with constant $\pi$ by `r sprintf("%.1f", d_constant)` (SE `r sprintf("%.1f", se_constant)`) and that of the negative binomial model by `r sprintf("%.1f", d_nb)` (SE `r sprintf("%.1f", se_nb)`) (@tbl-loo).
+Each difference was less than twice its standard error, so the support for the link from these data is moderate.
+`r k_text`
+
+The model with constant $\pi$ estimated a probability of an excess zero of `r ci(pi_constant)`, and both alternatives predicted fewer zeros than were observed (@tbl-loo).
+A constant $\pi$ applies equally to deployments inside and outside the reserve, whereas the proportion of zeros was `r pct(zero_out)`% outside and `r pct(zero_in)`% inside.
+
+```{r tbl-loo}
+#| tbl-cap: !expr paste0("Comparison of three models for the counts of legal-sized snapper at Hahei, fitted with the same predictors for the mean count (reserve status, season, area, and year) and the same priors. Differences in expected log predictive density (ELPD) are relative to the model with the greatest ELPD, with standard errors in brackets, from PSIS-LOO. Predicted zeros are the median and 95% interval of the posterior predictive distribution of the number of zero counts, against ", sum(snapper$count == 0), " observed.")
+tbl <- data.frame(
+  Model = c(
+    "Linked zero inflation",
+    "Constant zero inflation",
+    "Negative binomial, no zero inflation"
+  ),
+  `Difference in ELPD (SE)` = c(
+    "0",
+    sprintf("%.1f (%.1f)", -d_constant, se_constant),
+    sprintf("%.1f (%.1f)", -d_nb, se_nb)
+  ),
+  `Predicted zeros` = c(
+    ci(zp_linked, 0),
+    ci(zp_constant, 0),
+    ci(zp_nb, 0)
+  ),
+  check.names = FALSE
+)
+kable(tbl)
+```
+
+# Estimated relationship between zero inflation and the mean count
+
+```{r make-link-estimates}
+dr_linked <- as_draws_df(fit_linked)
+g0 <- dr_linked$b_g0_Intercept
+g1 <- dr_linked$b_g1_Intercept
+
+# Sampled combinations of area, year, and season.
+cells <- unique(snapper[, c("area", "reserve", "year", "season")])
+pi_cells     <- posterior_epred(fit_linked, newdata = cells, dpar = "zi")
+lambda_cells <- posterior_epred(fit_linked, newdata = cells, dpar = "mu")
+pi_out <- rowMeans(pi_cells[, cells$reserve == "outside"])
+pi_in  <- rowMeans(pi_cells[, cells$reserve == "inside"])
+stopifnot(median(g1) < 0)
+```
+
+The probability of an excess zero decreased as the mean count increased, with a posterior median for $\gamma_1$ of `r ci(g1, 2, "95% credible interval ")`, and for $\gamma_0$ of `r ci(g0)` (@fig-link).
+Averaged over the `r nrow(cells)` sampled combinations of area, year, and season, the probability of an excess zero was `r ci(pi_out)` outside the reserve and `r ci(pi_in)` inside.
+
+```{r fig-link}
+#| fig-width: 6
+#| fig-height: 4
+#| fig-cap: "Estimated relationship between the probability of an excess zero, $\\pi$, and the mean of the negative binomial component, $\\lambda$, for legal-sized snapper at Hahei, under the linked model $\\text{logit}(\\pi) = \\gamma_0 + \\gamma_1 \\log(\\lambda)$. The black line is the posterior median of $\\pi$ at each value of $\\lambda$, and the grey lines are the relationship for 100 draws from the posterior distribution of $\\gamma_0$ and $\\gamma_1$. Each point marks the posterior medians of $\\lambda$ and $\\pi$ for one sampled combination of area, year, and season, coloured by reserve status. The horizontal axis is on a log scale."
+lambda_med <- apply(lambda_cells, 2, median)
+grid <- exp(
+  seq(
+    log(min(lambda_med) / 2),
+    log(max(lambda_med) * 2),
+    length.out = 100
+  )
+)
+curve_df <- data.frame(
+  lambda = grid,
+  med    = sapply(
+    grid,
+    function(l) {
+      median(plogis(g0 + g1 * log(l)))
+    }
+  )
+)
+set.seed(2012)
+draw_ids <- sample(seq_along(g0), 100)
+draws_df <- do.call(
+  rbind,
+  lapply(
+    draw_ids,
+    function(i) {
+      data.frame(
+        draw   = i,
+        lambda = grid,
+        pi     = plogis(g0[i] + g1[i] * log(grid))
+      )
+    }
+  )
+)
+cells_df <- data.frame(
+  lambda  = lambda_med,
+  pi      = apply(pi_cells, 2, median),
+  reserve = cells$reserve
+)
+
+ggplot() +
+  geom_line(
+    data = draws_df,
+    aes(
+      x     = lambda,
+      y     = pi,
+      group = draw
+    ),
+    colour    = "grey60",
+    alpha     = 0.3,
+    linewidth = 0.3
+  ) +
+  geom_line(
+    data = curve_df,
+    aes(
+      x = lambda,
+      y = med
+    ),
+    linewidth = 0.9
+  ) +
+  geom_point(
+    data = cells_df,
+    aes(
+      x      = lambda,
+      y      = pi,
+      colour = reserve
+    ),
+    size = 1.5
+  ) +
+  scale_x_log10() +
+  scale_colour_manual(
+    values = c(
+      outside = "#D55E00",
+      inside  = "#0072B2"
+    )
+  ) +
+  labs(
+    x      = expression("Mean of the negative binomial component (" * lambda * ")"),
+    y      = expression("Probability of an excess zero (" * pi * ")"),
+    colour = "Reserve status"
+  ) +
+  theme_bw()
+```
+
+# Reserve effect
+
+The mean count is $(1 - \pi)\lambda$, and `posterior_epred()` returns this quantity for each observation with $\pi$ computed through the link, so a reserve effect on the scale of the counts can be computed from the fitted model without further coding.
+
+```{r make-reserve-effect}
+mu_cells <- posterior_epred(fit_linked, newdata = cells)
+
+# posterior_epred() should equal (1 - pi) * lambda for every cell and draw.
+stopifnot(
+  max(abs(mu_cells - (1 - pi_cells) * lambda_cells) / mu_cells) < 1e-8
+)
+
+mu_out <- rowMeans(mu_cells[, cells$reserve == "outside"])
+mu_in  <- rowMeans(mu_cells[, cells$reserve == "inside"])
+ratio  <- mu_in / mu_out
+
+# The text below states that this estimate is smaller than the published 16.36.
+stopifnot(median(ratio) < 0.8 * 16.36)
+```
+
+Averaged over the `r nrow(cells)` sampled combinations of area, year, and season, with equal weight for each, mean counts were `r ci(ratio, 1)` times greater inside the reserve than outside.
+This ratio applies to the areas and years that were sampled, and does not include the variation expected among new areas or years.
+
+The reserve effect estimated here is smaller than the posterior median of 16.36 reported by @smith2012 and the 16.0 reported for Hahei by @smith2014, because both papers evaluated $(1 - \pi)\lambda$ with the area, year, and season effects set to zero, instead of averaging $(1 - \pi)\lambda$ over the sampled combinations.
+Because $(1 - \pi)\lambda$ is a non-linear function of the linear predictor, the mean of $(1 - \pi)\lambda$ over the area, year, and season effects differs from $(1 - \pi)\lambda$ evaluated at zero effects.
+
+# Other implementations
+
+@anderson2022 fitted the zero-inflated negative binomial with the link of @smith2012, which they called ZINBL, by maximum likelihood in the R package [senlm](https://primer-e.github.io/senlm/), with a non-linear function for the mean response of a species along a single environmental gradient.
+@rabel2023 fitted a Bayesian version in Stan, also along a single gradient, in the R package [modskurt](https://hdrab127.github.io/modskurt/) ([source on GitHub](https://github.com/hdrab127/modskurt)), with $\pi$ linked to the mean count divided by the peak mean count along the gradient, rather than to the log of the mean count.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
