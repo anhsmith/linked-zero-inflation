@@ -33,7 +33,7 @@ pct <- function(x) {
 
 # Linked zero inflation
 
-This vignette provides code for fitting the linked zero-inflated model of @smith2012 in brms [@burkner2017] and Stan, in place of the OpenBUGS code published with the original papers.
+This vignette provides code for fitting the linked zero-inflated model of @smith2012 in brms [@burkner2017] and Stan.
 In the linked model, the probability of an excess zero, $\pi$, is a logistic function of the log of the mean of the count distribution, $\lambda$:
 $$
 \text{logit}(\pi_i) = \gamma_0 + \gamma_1 \log(\lambda_i),
