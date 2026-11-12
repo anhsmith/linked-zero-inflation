@@ -92,6 +92,8 @@ snapper <- read_csv(
     area    = factor(area),
     year    = factor(year)
   )
+
+snapper
 ```
 
 ```{r make-data-summary}
@@ -154,6 +156,8 @@ fit_linked <- brm(
   seed    = 2012,
   file    = "fits/fit-linked"
 )
+
+summary(fit_linked)
 ```
 
 ```{r make-diagnostics}
@@ -176,6 +180,9 @@ zeros_linked <- snapper |>
   add_predicted_draws(fit_linked) |>
   group_by(.draw) |>
   summarise(zeros = sum(.prediction == 0))
+
+zeros_linked |>
+  median_qi(zeros)
 ```
 
 The posterior predictive distribution of the number of zeros had a median of `r ci(zeros_linked$zeros, 0, "95% interval ")`, against `r n_zero` observed.
