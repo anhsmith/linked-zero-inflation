@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,14 +93,15 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a3252ae49e7bd5aa35e3e16a7e0fe469.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-df6d2ab53a2afba1f70a054ef2a4622c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -161,7 +162,7 @@ window.Quarto = {
 
 </head>
 
-<body class="quarto-light">
+<body class="quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -169,23 +170,22 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#linked-zero-inflation" id="toc-linked-zero-inflation" class="nav-link active" data-scroll-target="#linked-zero-inflation"><span class="header-section-number">1</span> Linked zero inflation</a></li>
-  <li><a href="#specification-in-brms" id="toc-specification-in-brms" class="nav-link" data-scroll-target="#specification-in-brms"><span class="header-section-number">2</span> Specification in brms</a></li>
-  <li><a href="#snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" id="toc-snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" class="nav-link" data-scroll-target="#snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve"><span class="header-section-number">3</span> Snapper in and around Te Whanganui-A-Hei (Hahei) Marine Reserve</a></li>
-  <li><a href="#comparison-with-negative-binomial-and-constant-zero-inflation-models" id="toc-comparison-with-negative-binomial-and-constant-zero-inflation-models" class="nav-link" data-scroll-target="#comparison-with-negative-binomial-and-constant-zero-inflation-models"><span class="header-section-number">4</span> Comparison with negative binomial and constant zero-inflation models</a></li>
-  <li><a href="#estimated-relationship-between-zero-inflation-and-the-mean-count" id="toc-estimated-relationship-between-zero-inflation-and-the-mean-count" class="nav-link" data-scroll-target="#estimated-relationship-between-zero-inflation-and-the-mean-count"><span class="header-section-number">5</span> Estimated relationship between zero inflation and the mean count</a></li>
-  <li><a href="#reserve-effect" id="toc-reserve-effect" class="nav-link" data-scroll-target="#reserve-effect"><span class="header-section-number">6</span> Reserve effect</a></li>
-  <li><a href="#other-implementations" id="toc-other-implementations" class="nav-link" data-scroll-target="#other-implementations"><span class="header-section-number">7</span> Other implementations</a></li>
+  <li><a href="#snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" id="toc-snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" class="nav-link" data-scroll-target="#snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve"><span class="header-section-number">2</span> Snapper in and around Te Whanganui-A-Hei (Hahei) Marine Reserve</a></li>
+  <li><a href="#comparison-with-negative-binomial-and-constant-zero-inflation-models" id="toc-comparison-with-negative-binomial-and-constant-zero-inflation-models" class="nav-link" data-scroll-target="#comparison-with-negative-binomial-and-constant-zero-inflation-models"><span class="header-section-number">3</span> Comparison with negative binomial and constant zero-inflation models</a></li>
+  <li><a href="#estimated-relationship-between-zero-inflation-and-the-mean-count" id="toc-estimated-relationship-between-zero-inflation-and-the-mean-count" class="nav-link" data-scroll-target="#estimated-relationship-between-zero-inflation-and-the-mean-count"><span class="header-section-number">4</span> Estimated relationship between zero inflation and the mean count</a></li>
+  <li><a href="#reserve-effect" id="toc-reserve-effect" class="nav-link" data-scroll-target="#reserve-effect"><span class="header-section-number">5</span> Reserve effect</a></li>
+  <li><a href="#other-implementations" id="toc-other-implementations" class="nav-link" data-scroll-target="#other-implementations"><span class="header-section-number">6</span> Other implementations</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/anhsmith/linked-zero-inflation/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/anhsmith/linked-zero-inflation/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -223,206 +223,173 @@ window.Quarto = {
 <p>This vignette provides code for fitting the linked zero-inflated model of <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span> in brms <span class="citation" data-cites="burkner2017">(<a href="#ref-burkner2017" role="doc-biblioref">Bürkner 2017</a>)</span> and Stan, in place of the OpenBUGS code published with the original papers. In the linked model, the probability of an excess zero, <span class="math inline">\(\pi\)</span>, is a logistic function of the log of the mean of the count distribution, <span class="math inline">\(\lambda\)</span>: <span class="math display">\[
 \text{logit}(\pi_i) = \gamma_0 + \gamma_1 \log(\lambda_i),
 \]</span> where <span class="math inline">\(i\)</span> indexes observations and <span class="math inline">\(\gamma_0\)</span> and <span class="math inline">\(\gamma_1\)</span> are parameters to be estimated. Smith et al. <span class="citation" data-cites="smith2012 smith2014">(<a href="#ref-smith2012" role="doc-biblioref">2012</a>, <a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span> supplied R and OpenBUGS <span class="citation" data-cites="lunn2009">(<a href="#ref-lunn2009" role="doc-biblioref">Lunn et al. 2009</a>)</span> code for fitting this model, but OpenBUGS has now largely been superseded by more modern software. In brms, the model requires only the zero-inflated negative binomial family that brms provides and a non-linear formula <span class="citation" data-cites="burkner2018">(<a href="#ref-burkner2018" role="doc-biblioref">Bürkner 2018</a>)</span>, with no custom family or Stan code, and the functions for prediction and model checking (<code>posterior_epred()</code>, <code>posterior_predict()</code>, <code>loo()</code>, and <code>pp_check()</code>) work on the fitted model without modification.</p>
-<p><span class="citation" data-cites="smith2014">Smith et al. (<a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span> applied the linked model to counts of legal-sized snapper, <em>Chrysophrys auratus</em> (Sparidae), formerly <em>Pagrus auratus</em>, from 1,045 baited underwater video deployments in and around three marine reserves in north-eastern New Zealand, where the linked model was the form of zero inflation selected by the deviance information criterion (DIC). For sublegal snapper in the same study, DIC selected a separate linear predictor for <span class="math inline">\(\pi\)</span>. The example here uses the deployments at one of the three reserves, Te Whanganui-A-Hei (Hahei) Marine Reserve, which are also the data analysed by <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>.</p>
-<p>Zero-inflated models for counts of organisms add to a count distribution a probability, <span class="math inline">\(\pi\)</span>, that an observation is an excess zero, so that the mean count is <span class="math inline">\((1 - \pi)\lambda\)</span> <span class="citation" data-cites="lambert1992">(<a href="#ref-lambert1992" role="doc-biblioref">Lambert 1992</a>)</span>. In most applications, <span class="math inline">\(\pi\)</span> is either held constant or given a linear predictor of its own. A constant <span class="math inline">\(\pi\)</span> makes no use of any relationship between <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\lambda\)</span>. A separate linear predictor adds a coefficient for every term in it and splits the effect of each predictor between <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\lambda\)</span>, and <span class="citation" data-cites="smith2014">Smith et al. (<a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span> found that this split made the spatial effects for sublegal snapper difficult to interpret. <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span> followed <span class="citation" data-cites="lambert1992">Lambert (<a href="#ref-lambert1992" role="doc-biblioref">1992</a>)</span> in using a single linear predictor for both <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\lambda\)</span>.</p>
-<p>For many species, the proportion of sites occupied increases with mean abundance <span class="citation" data-cites="brown1984 borregaard2010">(<a href="#ref-brown1984" role="doc-biblioref">Brown 1984</a>; <a href="#ref-borregaard2010" role="doc-biblioref">Borregaard and Rahbek 2010</a>)</span>. A model in which <span class="math inline">\(\pi\)</span> decreases as <span class="math inline">\(\lambda\)</span> increases incorporates this intraspecific occupancy–abundance relationship directly, and adds only two parameters, <span class="math inline">\(\gamma_0\)</span> and <span class="math inline">\(\gamma_1\)</span>, whatever the number of predictors for <span class="math inline">\(\lambda\)</span>. A negative <span class="math inline">\(\gamma_1\)</span> gives fewer excess zeros where the mean count is higher, and <span class="math inline">\(\gamma_1 = 0\)</span> reduces the model to a constant probability of an excess zero.</p>
+<p>Here is how to implement the linked model in brms, with <code>y</code> a count and <code>x1</code>, <code>x2</code>, and <code>group</code> standing for the predictors in any particular study:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">bf</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    y <span class="sc">~</span> eta,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nlf</span>(zi <span class="sc">~</span> g0 <span class="sc">+</span> g1 <span class="sc">*</span> eta),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    eta <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> group),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    g0 <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    g1 <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">nl =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data   =</span> my_data,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">zero_inflated_negbinomial</span>(),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior  =</span> <span class="fu">c</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"eta"</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g0"</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g1"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The linear predictor for <span class="math inline">\(\log(\lambda)\)</span> is declared as a non-linear parameter, <code>eta</code>, which then enters both the formula for the mean and the formula for <code>zi</code>, the brms name for <span class="math inline">\(\pi\)</span>. The zero-inflated negative binomial family in brms has a log link for the mean and a logit link for <code>zi</code>, so each formula is written on the scale of its linear predictor, and <code>zi ~ g0 + g1 * eta</code> is the linked model of <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>. The two parameters of the link, <code>g0</code> and <code>g1</code>, are non-linear parameters, each with an intercept only. A non-linear model in brms requires a proper prior on every non-linear parameter, so the coefficients of <code>eta</code>, <code>g0</code>, and <code>g1</code> each need one. Because <span class="math inline">\(\gamma_1\)</span> multiplies <span class="math inline">\(\log(\lambda)\)</span>, rescaling the counts shifts <span class="math inline">\(\log(\lambda)\)</span> by a constant, which changes <span class="math inline">\(\gamma_0\)</span> but not <span class="math inline">\(\gamma_1\)</span>, so a prior for <span class="math inline">\(\gamma_1\)</span> does not depend on the units of the counts.</p>
 </section>
-<section id="specification-in-brms" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Specification in brms</h1>
-<p>The linear predictor for <span class="math inline">\(\log(\lambda)\)</span> is declared as a non-linear parameter, <code>eta</code>, which then enters both the formula for the mean and the formula for <code>zi</code>, the brms name for <span class="math inline">\(\pi\)</span>. The zero-inflated negative binomial family in brms has a log link for the mean and a logit link for <code>zi</code>, so each formula is written on the scale of its linear predictor, and <code>zi ~ g0 + g1 * eta</code> is the linked model of <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>. The two parameters of the link, <code>g0</code> and <code>g1</code>, are non-linear parameters, each with an intercept only.</p>
+<section id="snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Snapper in and around Te Whanganui-A-Hei (Hahei) Marine Reserve</h1>
+<p>The example uses counts of legal-sized snapper, <em>Chrysophrys auratus</em> (Sparidae), formerly <em>Pagrus auratus</em>, from baited underwater video deployments in and around Te Whanganui-A-Hei (Hahei) Marine Reserve, New Zealand, analysed by <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span> and, with two other reserves, by <span class="citation" data-cites="smith2014">Smith et al. (<a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f_linked <span class="ot">&lt;-</span> <span class="fu">bf</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  count <span class="sc">~</span> eta,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nlf</span>(zi <span class="sc">~</span> g0 <span class="sc">+</span> g1 <span class="sc">*</span> eta),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  eta <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  g0 <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  g1 <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">nl =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>snapper <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/snapper-hahei.csv"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">reserve =</span> <span class="fu">factor</span>(reserve, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"outside"</span>, <span class="st">"inside"</span>)),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">season  =</span> <span class="fu">factor</span>(season, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"spring"</span>, <span class="st">"autumn"</span>)),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">area    =</span> <span class="fu">factor</span>(area),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">year    =</span> <span class="fu">factor</span>(year)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>A non-linear model in brms requires a proper prior on every non-linear parameter, so the coefficients of <code>eta</code>, <code>g0</code>, and <code>g1</code> each need one. We used Normal(0, 2.5) priors for these coefficients, which are weakly informative on the log scale of <span class="math inline">\(\lambda\)</span> and the logit scale of <span class="math inline">\(\pi\)</span>, a half-Student-t prior with 3 degrees of freedom and scale 2.5 for the standard deviations of the random effects, and Gamma(0.01, 0.01), the brms default, for the shape parameter of the negative binomial. Because <span class="math inline">\(\gamma_1\)</span> multiplies <span class="math inline">\(\log(\lambda)\)</span>, rescaling the counts shifts <span class="math inline">\(\log(\lambda)\)</span> by a constant, which changes <span class="math inline">\(\gamma_0\)</span> but not <span class="math inline">\(\gamma_1\)</span>, so a prior for <span class="math inline">\(\gamma_1\)</span> does not depend on the units of the counts.</p>
+<p>Each of the 348 counts is the maximum number of legal-sized snapper seen in any one frame of a video (MaxN), from 6 areas (3 inside the reserve), 9 years, and two seasons. Zeros made up 55% of the counts: 83% of those outside the reserve, where the mean count was 0.32, and 28% of those inside, where the mean count was 3.39.</p>
+<p>Following <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>, the model for <span class="math inline">\(\log(\lambda)\)</span> included reserve status and season as fixed effects, and area and year as random effects. We used Normal(0, 2.5) priors for the coefficients of <code>eta</code>, <code>g0</code>, and <code>g1</code>, which are weakly informative on the log scale of <span class="math inline">\(\lambda\)</span> and the logit scale of <span class="math inline">\(\pi\)</span>, a half-Student-t prior with 3 degrees of freedom and scale 2.5 for the standard deviations of the random effects, and Gamma(0.01, 0.01), the brms default, for the shape parameter of the negative binomial.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pr_linked <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"eta"</span>),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g0"</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g1"</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">student_t</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"sd"</span>, <span class="at">nlpar =</span> <span class="st">"eta"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">gamma</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>), <span class="at">class =</span> <span class="st">"shape"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="snapper-in-and-around-te-whanganui-a-hei-hahei-marine-reserve" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Snapper in and around Te Whanganui-A-Hei (Hahei) Marine Reserve</h1>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>snapper <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/snapper-hahei.csv"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colClasses =</span> <span class="fu">c</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">count   =</span> <span class="st">"integer"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">reserve =</span> <span class="st">"character"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">area    =</span> <span class="st">"character"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">year    =</span> <span class="st">"character"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">season  =</span> <span class="st">"character"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>snapper <span class="ot">&lt;-</span> <span class="fu">transform</span>(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  snapper,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">reserve =</span> <span class="fu">factor</span>(reserve, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"outside"</span>, <span class="st">"inside"</span>)),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">season  =</span> <span class="fu">factor</span>(season, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"spring"</span>, <span class="st">"autumn"</span>)),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">area    =</span> <span class="fu">factor</span>(area),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">year    =</span> <span class="fu">factor</span>(year)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(snapper) <span class="sc">==</span> <span class="dv">348</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(snapper<span class="sc">$</span>count <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">==</span> <span class="dv">191</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nlevels</span>(snapper<span class="sc">$</span>area) <span class="sc">==</span> <span class="dv">6</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nlevels</span>(snapper<span class="sc">$</span>year) <span class="sc">==</span> <span class="dv">9</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>n_obs     <span class="ot">&lt;-</span> <span class="fu">nrow</span>(snapper)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>zero_all  <span class="ot">&lt;-</span> <span class="fu">mean</span>(snapper<span class="sc">$</span>count <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>zero_out  <span class="ot">&lt;-</span> <span class="fu">mean</span>(snapper<span class="sc">$</span>count[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"outside"</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>zero_in   <span class="ot">&lt;-</span> <span class="fu">mean</span>(snapper<span class="sc">$</span>count[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>] <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>mean_out  <span class="ot">&lt;-</span> <span class="fu">mean</span>(snapper<span class="sc">$</span>count[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"outside"</span>])</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>mean_in   <span class="ot">&lt;-</span> <span class="fu">mean</span>(snapper<span class="sc">$</span>count[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>])</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>n_area_in <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(snapper<span class="sc">$</span>area[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The example data are counts of legal-sized snapper (fork length greater than 27 cm) from 348 baited underwater video deployments made inside and outside Te Whanganui-A-Hei (Hahei) Marine Reserve between 1997 and 2010. Each count is the maximum number of legal-sized snapper seen in any one frame of a 30 min video (MaxN), which is a measure of relative density, not absolute density. The deployments were spread over 6 areas, 3 inside the reserve and 3 outside, in 9 years and two seasons (spring and autumn), in an unbalanced design. The file <code>data/snapper-hahei.csv</code> was built from the supplement to <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span> by <code>data-raw/make-snapper-hahei.R</code>, which checks that the counts agree with the Hahei subset of the supplement to <span class="citation" data-cites="smith2014">Smith et al. (<a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span>.</p>
-<p>Zeros made up 55% of the counts: 83% of those outside the reserve, where the mean count was 0.32, and 28% of those inside, where the mean count was 3.39.</p>
-<p>Following <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>, the model for <span class="math inline">\(\log(\lambda)\)</span> included reserve status and season as fixed effects, and area and year as random effects.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_linked <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  brm,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">formula =</span> f_linked,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data    =</span> snapper,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">family  =</span> <span class="fu">zero_inflated_negbinomial</span>(),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior   =</span> pr_linked,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed    =</span> <span class="dv">2012</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">file    =</span> <span class="st">"fits/fit-linked"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    fit_args</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>diagnose <span class="ot">&lt;-</span> <span class="cf">function</span>(fit) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  np <span class="ot">&lt;-</span> <span class="fu">nuts_params</span>(fit)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rhat_max  =</span> <span class="fu">max</span>(<span class="fu">rhat</span>(fit), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_div     =</span> <span class="fu">sum</span>(np<span class="sc">$</span>Value[np<span class="sc">$</span>Parameter <span class="sc">==</span> <span class="st">"divergent__"</span>]),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_draws   =</span> <span class="fu">ndraws</span>(fit)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>dg_linked <span class="ot">&lt;-</span> <span class="fu">diagnose</span>(fit_linked)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(dg_linked<span class="sc">$</span>rhat_max <span class="sc">&lt;</span> <span class="fl">1.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f_linked <span class="ot">&lt;-</span> <span class="fu">bf</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  count <span class="sc">~</span> eta,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nlf</span>(zi <span class="sc">~</span> g0 <span class="sc">+</span> g1 <span class="sc">*</span> eta),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  eta <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  g0 <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  g1 <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">nl =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>pr_linked <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"eta"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g0"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">nlpar =</span> <span class="st">"g1"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">student_t</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"sd"</span>, <span class="at">nlpar =</span> <span class="st">"eta"</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">gamma</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>), <span class="at">class =</span> <span class="st">"shape"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>fit_linked <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> f_linked,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">data    =</span> snapper,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">family  =</span> <span class="fu">zero_inflated_negbinomial</span>(),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior   =</span> pr_linked,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains  =</span> <span class="dv">4</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter    =</span> <span class="dv">3000</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup  =</span> <span class="dv">1000</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">adapt_delta =</span> <span class="fl">0.99</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed    =</span> <span class="dv">2012</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">file    =</span> <span class="st">"fits/fit-linked"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Four chains of 2,000 post-warmup draws each were run with <code>adapt_delta = 0.99</code>. The largest <span class="math inline">\(\hat{R}\)</span> was 1.002, and none of the 8,000 post-warmup transitions were divergent.</p>
+<p>The number of zeros in data simulated from the fitted model can be compared with the number observed:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>zeros_pred <span class="ot">&lt;-</span> <span class="cf">function</span>(fit) {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(<span class="fu">posterior_predict</span>(fit) <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>zp_linked <span class="ot">&lt;-</span> <span class="fu">zeros_pred</span>(fit_linked)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>zeros_linked <span class="ot">&lt;-</span> snapper <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predicted_draws</span>(fit_linked) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.draw) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">zeros =</span> <span class="fu">sum</span>(.prediction <span class="sc">==</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The posterior predictive distribution of the number of zeros had a median of 190 (95% interval 170 to 211), against 191 observed.</p>
-<p>The predicted mean count, <span class="math inline">\((1 - \pi)\lambda\)</span>, for each area and season, averaged over the years in which that combination was sampled, is shown with the observed counts in <a href="#fig-data" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>The function <code>add_epred_draws()</code> in <a href="https://mjskay.github.io/tidybayes/">tidybayes</a> calls <code>posterior_epred()</code>, which returns the predicted mean count, <span class="math inline">\((1 - \pi)\lambda\)</span>, with <span class="math inline">\(\pi\)</span> computed through the link. With <code>dpar = TRUE</code>, it also returns <span class="math inline">\(\lambda\)</span> (<code>mu</code>) and <span class="math inline">\(\pi\)</span> (<code>zi</code>). Here it was evaluated for every sampled combination of area, year, and season:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Positions of the areas inside the reserve on the horizontal axis.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>area_levels <span class="ot">&lt;-</span> <span class="fu">levels</span>(snapper<span class="sc">$</span>area)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>inside_pos  <span class="ot">&lt;-</span> <span class="fu">which</span>(area_levels <span class="sc">%in%</span> <span class="fu">unique</span>(<span class="fu">as.character</span>(snapper<span class="sc">$</span>area[snapper<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>])))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">diff</span>(inside_pos) <span class="sc">==</span> <span class="dv">1</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted mean count for each sampled area x year x season combination, averaged</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># over years within each area and season, then summarised over draws.</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>cells_ays <span class="ot">&lt;-</span> <span class="fu">unique</span>(snapper[, <span class="fu">c</span>(<span class="st">"area"</span>, <span class="st">"reserve"</span>, <span class="st">"year"</span>, <span class="st">"season"</span>)])</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>mu_ays    <span class="ot">&lt;-</span> <span class="fu">posterior_epred</span>(fit_linked, <span class="at">newdata =</span> cells_ays)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>key       <span class="ot">&lt;-</span> <span class="fu">interaction</span>(cells_ays<span class="sc">$</span>area, cells_ays<span class="sc">$</span>season, <span class="at">drop =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">"|"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pred_as   <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">levels</span>(key),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(k) {</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      m <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mu_ays[, key <span class="sc">==</span> k, <span class="at">drop =</span> <span class="cn">FALSE</span>])</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      parts <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(k, <span class="st">"|"</span>, <span class="at">fixed =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">data.frame</span>(</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">area   =</span> parts[<span class="dv">1</span>],</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">season =</span> parts[<span class="dv">2</span>],</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">med    =</span> <span class="fu">median</span>(m),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">lo     =</span> <span class="fu">quantile</span>(m, <span class="fl">0.025</span>),</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">hi     =</span> <span class="fu">quantile</span>(m, <span class="fl">0.975</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>pred_as<span class="sc">$</span>area   <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_as<span class="sc">$</span>area, <span class="at">levels =</span> area_levels)</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>pred_as<span class="sc">$</span>season <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_as<span class="sc">$</span>season, <span class="at">levels =</span> <span class="fu">levels</span>(snapper<span class="sc">$</span>season))</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(pred_as) <span class="sc">==</span> <span class="fu">nlevels</span>(snapper<span class="sc">$</span>area) <span class="sc">*</span> <span class="fu">nlevels</span>(snapper<span class="sc">$</span>season))</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>season_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">spring =</span> <span class="st">"#009E73"</span>,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">autumn =</span> <span class="st">"#D55E00"</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>,</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fu">min</span>(inside_pos) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fu">max</span>(inside_pos) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="cn">Inf</span>,</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#FFF5C2"</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> snapper,</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> area,</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> <span class="fu">sqrt</span>(count),</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">colour =</span> season</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitterdodge</span>(</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">jitter.width  =</span> <span class="fl">0.2</span>,</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">jitter.height =</span> <span class="fl">0.15</span>,</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">dodge.width   =</span> <span class="fl">0.7</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">size  =</span> <span class="fl">1.1</span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pred_as,</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">x     =</span> area,</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">y     =</span> <span class="fu">sqrt</span>(med),</span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin  =</span> <span class="fu">sqrt</span>(lo),</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax  =</span> <span class="fu">sqrt</span>(hi),</span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill  =</span> season,</span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> season</span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">position  =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.7</span>),</span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape     =</span> <span class="dv">21</span>,</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour    =</span> <span class="st">"black"</span>,</span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">size      =</span> <span class="fl">0.6</span>,</span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The square root is taken in aes() rather than with scale_y_sqrt(), which would</span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="co"># turn the -Inf limit of the shaded rectangle into NaN and drop it.</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">sqrt</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)),</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> season_cols</span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> season_cols</span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">x      =</span> <span class="st">"Area"</span>,</span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">y      =</span> <span class="st">"Legal-sized snapper per deployment (MaxN)"</span>,</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Season"</span>,</span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill   =</span> <span class="st">"Season"</span></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pred_draws <span class="ot">&lt;-</span> snapper <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(area, reserve, year, season) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_epred_draws</span>(fit_linked, <span class="at">dpar =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The predicted mean count for each area and season, averaged over the years in which that combination was sampled, is shown with the observed counts in <a href="#fig-data" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code for the figure</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average the predicted mean counts over years within each area and season,</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then summarise the draws.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pred_area_season <span class="ot">&lt;-</span> pred_draws <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(area, season, .draw) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_count =</span> <span class="fu">mean</span>(.epred),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups    =</span> <span class="st">"drop_last"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median_qi</span>(mean_count)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>season_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">spring =</span> <span class="st">"#009E73"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">autumn =</span> <span class="st">"#D55E00"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># The areas inside the reserve (2 to 4) are shaded.</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fl">1.5</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fl">4.5</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="cn">Inf</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#FFF5C2"</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> snapper,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> area,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> <span class="fu">sqrt</span>(count),</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">colour =</span> season</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitterdodge</span>(</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">jitter.width  =</span> <span class="fl">0.2</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">jitter.height =</span> <span class="fl">0.15</span>,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">dodge.width   =</span> <span class="fl">0.7</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">size  =</span> <span class="fl">1.1</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pred_area_season,</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">x     =</span> area,</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">y     =</span> <span class="fu">sqrt</span>(mean_count),</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin  =</span> <span class="fu">sqrt</span>(.lower),</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax  =</span> <span class="fu">sqrt</span>(.upper),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill  =</span> season,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> season</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">position  =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.7</span>),</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape     =</span> <span class="dv">21</span>,</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour    =</span> <span class="st">"black"</span>,</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">size      =</span> <span class="fl">0.6</span>,</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">sqrt</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)),</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> season_cols) <span class="sc">+</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> season_cols) <span class="sc">+</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">x      =</span> <span class="st">"Area"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">y      =</span> <span class="st">"Legal-sized snapper per deployment (MaxN)"</span>,</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Season"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill   =</span> <span class="st">"Season"</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -437,303 +404,148 @@ Figure&nbsp;1: Counts of legal-sized snapper (MaxN) from baited underwater video
 </div>
 </div>
 </section>
-<section id="comparison-with-negative-binomial-and-constant-zero-inflation-models" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Comparison with negative binomial and constant zero-inflation models</h1>
+<section id="comparison-with-negative-binomial-and-constant-zero-inflation-models" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Comparison with negative binomial and constant zero-inflation models</h1>
 <p>To check whether the link improved the model, we fitted two alternatives with the same predictors for <span class="math inline">\(\lambda\)</span> and the same priors: a negative binomial model with no zero inflation, and a zero-inflated negative binomial model with constant <span class="math inline">\(\pi\)</span>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pr_glm <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"b"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">student_t</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"sd"</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">gamma</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>), <span class="at">class =</span> <span class="st">"shape"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fit_nb <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  brm,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">formula =</span> <span class="fu">bf</span>(count <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year)),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data    =</span> snapper,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">family  =</span> <span class="fu">negbinomial</span>(),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior   =</span> pr_glm,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed    =</span> <span class="dv">1</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">file    =</span> <span class="st">"fits/fit-nb"</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    fit_args</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>fit_constant <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  brm,</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">formula =</span> <span class="fu">bf</span>(</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        count <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year),</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        zi <span class="sc">~</span> <span class="dv">1</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">data    =</span> snapper,</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">family  =</span> <span class="fu">zero_inflated_negbinomial</span>(),</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior   =</span> <span class="fu">c</span>(</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        pr_glm,</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>, <span class="at">dpar =</span> <span class="st">"zi"</span>)</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed    =</span> <span class="dv">2</span>,</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">file    =</span> <span class="st">"fits/fit-constant"</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    fit_args</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>dg_nb       <span class="ot">&lt;-</span> <span class="fu">diagnose</span>(fit_nb)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>dg_constant <span class="ot">&lt;-</span> <span class="fu">diagnose</span>(fit_constant)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  dg_nb<span class="sc">$</span>rhat_max <span class="sc">&lt;</span> <span class="fl">1.01</span>,</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  dg_constant<span class="sc">$</span>rhat_max <span class="sc">&lt;</span> <span class="fl">1.01</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pr_glm <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"b"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">student_t</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"sd"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">gamma</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>), <span class="at">class =</span> <span class="st">"shape"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>fit_nb <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> count <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data    =</span> snapper,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">family  =</span> <span class="fu">negbinomial</span>(),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior   =</span> pr_glm,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains  =</span> <span class="dv">4</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter    =</span> <span class="dv">3000</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup  =</span> <span class="dv">1000</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">adapt_delta =</span> <span class="fl">0.99</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed    =</span> <span class="dv">1</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">file    =</span> <span class="st">"fits/fit-nb"</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>fit_constant <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">bf</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    count <span class="sc">~</span> reserve <span class="sc">+</span> season <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> area) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    zi <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">data    =</span> snapper,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">family  =</span> <span class="fu">zero_inflated_negbinomial</span>(),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior   =</span> <span class="fu">c</span>(</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    pr_glm,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>, <span class="at">dpar =</span> <span class="st">"zi"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains  =</span> <span class="dv">4</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter    =</span> <span class="dv">3000</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup  =</span> <span class="dv">1000</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">adapt_delta =</span> <span class="fl">0.99</span>),</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed    =</span> <span class="dv">2</span>,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">file    =</span> <span class="st">"fits/fit-constant"</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-cache.extra="[&quot;16af73efa8e91decfdf8d51827d4752a&quot;,&quot;de673fe7df7aa792ce80b2c0dcca4a24&quot;,&quot;cc53d80d1c84dc69f75fbbd01d7a665f&quot;]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSIS-LOO for each model. Observations with Pareto k above 0.7 are handled by</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># refitting the model without them (reloo), and the number of such observations</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># is kept for the text. The chunk is cached, and the cache is invalidated when any</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># of the three fit files changes, so the reloo refits run only once.</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>loo_checked <span class="ot">&lt;-</span> <span class="cf">function</span>(fit) {</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  l      <span class="ot">&lt;-</span> <span class="fu">loo</span>(fit)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  n_high <span class="ot">&lt;-</span> <span class="fu">sum</span>(l<span class="sc">$</span>diagnostics<span class="sc">$</span>pareto_k <span class="sc">&gt;</span> <span class="fl">0.7</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n_high <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    l <span class="ot">&lt;-</span> <span class="fu">loo</span>(fit, <span class="at">reloo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">loo    =</span> l,</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_high =</span> n_high</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>lc_linked   <span class="ot">&lt;-</span> <span class="fu">loo_checked</span>(fit_linked)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>lc_nb       <span class="ot">&lt;-</span> <span class="fu">loo_checked</span>(fit_nb)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>lc_constant <span class="ot">&lt;-</span> <span class="fu">loo_checked</span>(fit_constant)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>cmp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">loo_compare</span>(</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">linked   =</span> lc_linked<span class="sc">$</span>loo,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">constant =</span> lc_constant<span class="sc">$</span>loo,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">nb       =</span> lc_nb<span class="sc">$</span>loo</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Depending on the version of loo, the model names are the row names or a column.</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">"model"</span> <span class="sc">%in%</span> <span class="fu">names</span>(cmp)) {</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  cmp<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">rownames</span>(cmp)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>d_constant  <span class="ot">&lt;-</span> <span class="sc">-</span>cmp<span class="sc">$</span>elpd_diff[cmp<span class="sc">$</span>model <span class="sc">==</span> <span class="st">"constant"</span>]</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>se_constant <span class="ot">&lt;-</span> cmp<span class="sc">$</span>se_diff[cmp<span class="sc">$</span>model <span class="sc">==</span> <span class="st">"constant"</span>]</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>d_nb        <span class="ot">&lt;-</span> <span class="sc">-</span>cmp<span class="sc">$</span>elpd_diff[cmp<span class="sc">$</span>model <span class="sc">==</span> <span class="st">"nb"</span>]</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>se_nb       <span class="ot">&lt;-</span> cmp<span class="sc">$</span>se_diff[cmp<span class="sc">$</span>model <span class="sc">==</span> <span class="st">"nb"</span>]</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>n_high <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">linked   =</span> lc_linked<span class="sc">$</span>n_high,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">constant =</span> lc_constant<span class="sc">$</span>n_high,</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">nb       =</span> lc_nb<span class="sc">$</span>n_high</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The text below states that the linked model ranked first and that each</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co"># difference was less than twice its standard error.</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  cmp<span class="sc">$</span>model[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"linked"</span>,</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  d_constant <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  d_nb <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  d_constant <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">*</span> se_constant,</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  d_nb <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">*</span> se_nb</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Sentence on Pareto k for the text.</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>model_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">linked   =</span> <span class="st">"the linked model"</span>,</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">constant =</span> <span class="st">"the model with constant $</span><span class="sc">\\</span><span class="st">pi$"</span>,</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">nb       =</span> <span class="st">"the negative binomial model"</span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>k_text <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">all</span>(n_high <span class="sc">==</span> <span class="dv">0</span>)) {</span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  <span class="st">"All Pareto $k$ values were below 0.7, the threshold above which PSIS-LOO estimates are unreliable [@vehtari2017]."</span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>  hi  <span class="ot">&lt;-</span> n_high[n_high <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(</span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">"%s observation%s in %s"</span>,</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(hi <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"one"</span>, <span class="fu">as.character</span>(hi)),</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(hi <span class="sc">==</span> <span class="dv">1</span>, <span class="st">""</span>, <span class="st">"s"</span>),</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>      model_names[<span class="fu">names</span>(hi)]</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">collapse =</span> <span class="st">" and "</span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(</span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toupper</span>(<span class="fu">substr</span>(txt, <span class="dv">1</span>, <span class="dv">1</span>)),</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">substr</span>(txt, <span class="dv">2</span>, <span class="fu">nchar</span>(txt)),</span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">" had a Pareto $k$ value above 0.7, the threshold above which PSIS-LOO estimates are unreliable [@vehtari2017], and the contribution of each such observation was computed by refitting the model without it (`reloo = TRUE`)."</span></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>zp_nb       <span class="ot">&lt;-</span> <span class="fu">zeros_pred</span>(fit_nb)</span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>zp_constant <span class="ot">&lt;-</span> <span class="fu">zeros_pred</span>(fit_constant)</span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>pi_constant <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">as_draws_df</span>(fit_constant)<span class="sc">$</span>b_zi_Intercept)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Expected log predictive density, estimated by Pareto-smoothed importance-sampling leave-one-out cross-validation <span class="citation" data-cites="vehtari2017">(PSIS-LOO, <a href="#ref-vehtari2017" role="doc-biblioref">Vehtari et al. 2017</a>)</span>, was greatest for the linked model, exceeding that of the model with constant <span class="math inline">\(\pi\)</span> by 6.3 (SE 4.3) and that of the negative binomial model by 7.2 (SE 4.5) (<a href="#tbl-loo" class="quarto-xref">Table&nbsp;1</a>). Each difference was less than twice its standard error, so the support for the link from these data is moderate. One observation in the model with constant <span class="math inline">\(\pi\)</span> had a Pareto <span class="math inline">\(k\)</span> value above 0.7, the threshold above which PSIS-LOO estimates are unreliable <span class="citation" data-cites="vehtari2017">(<a href="#ref-vehtari2017" role="doc-biblioref">Vehtari et al. 2017</a>)</span>, and the contribution of each such observation was computed by refitting the model without it (<code>reloo = TRUE</code>).</p>
-<p>The model with constant <span class="math inline">\(\pi\)</span> estimated a probability of an excess zero of 0.11 (0.01 to 0.22), and both alternatives predicted fewer zeros than were observed (<a href="#tbl-loo" class="quarto-xref">Table&nbsp;1</a>). A constant <span class="math inline">\(\pi\)</span> applies equally to deployments inside and outside the reserve, whereas the proportion of zeros was 83% outside and 28% inside.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Linked zero inflation"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Constant zero inflation"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Negative binomial, no zero inflation"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Difference in ELPD (SE)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f (%.1f)"</span>, <span class="sc">-</span>d_constant, se_constant),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f (%.1f)"</span>, <span class="sc">-</span>d_nb, se_nb)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Predicted zeros</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ci</span>(zp_linked, <span class="dv">0</span>),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ci</span>(zp_constant, <span class="dv">0</span>),</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ci</span>(zp_nb, <span class="dv">0</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tbl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-loo" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-loo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Comparison of three models for the counts of legal-sized snapper at Hahei, fitted with the same predictors for the mean count (reserve status, season, area, and year) and the same priors. Differences in expected log predictive density (ELPD) are relative to the model with the greatest ELPD, with standard errors in brackets, from PSIS-LOO. Predicted zeros are the median and 95% interval of the posterior predictive distribution of the number of zero counts, against 191 observed.
-</figcaption>
-<div aria-describedby="tbl-loo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 47%">
-<col style="width: 30%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: left;">Difference in ELPD (SE)</th>
-<th style="text-align: left;">Predicted zeros</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Linked zero inflation</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">190 (170 to 211)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Constant zero inflation</td>
-<td style="text-align: left;">-6.3 (4.3)</td>
-<td style="text-align: left;">183 (163 to 204)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Negative binomial, no zero inflation</td>
-<td style="text-align: left;">-7.2 (4.5)</td>
-<td style="text-align: left;">180 (159 to 200)</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>loo_linked   <span class="ot">&lt;-</span> <span class="fu">loo</span>(fit_linked, <span class="at">reloo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>loo_constant <span class="ot">&lt;-</span> <span class="fu">loo</span>(fit_constant, <span class="at">reloo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>loo_nb       <span class="ot">&lt;-</span> <span class="fu">loo</span>(fit_nb, <span class="at">reloo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(loo_linked, loo_constant, loo_nb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        model elpd_diff se_diff p_worse diag_diff diag_elpd
+   fit_linked       0.0     0.0      NA                    
+ fit_constant      -6.4     4.2    0.93                    
+       fit_nb      -7.2     4.5    0.94                    </code></pre>
 </div>
 </div>
-</figure>
-</div>
-</div>
+<p>Expected log predictive density, estimated by Pareto-smoothed importance-sampling leave-one-out cross-validation <span class="citation" data-cites="vehtari2017">(PSIS-LOO, <a href="#ref-vehtari2017" role="doc-biblioref">Vehtari et al. 2017</a>)</span>, was greatest for the linked model, exceeding that of the model with constant <span class="math inline">\(\pi\)</span> by 6.4 (SE 4.2) and that of the negative binomial model by 7.2 (SE 4.5). Each difference was less than twice its standard error, so the support for the link from these data is moderate. Observations with a Pareto <span class="math inline">\(k\)</span> value above 0.7, the threshold above which PSIS-LOO estimates are unreliable <span class="citation" data-cites="vehtari2017">(<a href="#ref-vehtari2017" role="doc-biblioref">Vehtari et al. 2017</a>)</span>, were handled by refitting the model without them (<code>reloo = TRUE</code>).</p>
+<p>The model with constant <span class="math inline">\(\pi\)</span> estimated a probability of an excess zero of 0.11 (0.01 to 0.22). The median number of zeros predicted was 183 for the model with constant <span class="math inline">\(\pi\)</span> and 180 for the negative binomial model, against 191 observed and 190 for the linked model. A constant <span class="math inline">\(\pi\)</span> applies equally to deployments inside and outside the reserve, whereas the proportion of zeros was 83% outside and 28% inside.</p>
 </section>
-<section id="estimated-relationship-between-zero-inflation-and-the-mean-count" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Estimated relationship between zero inflation and the mean count</h1>
+<section id="estimated-relationship-between-zero-inflation-and-the-mean-count" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estimated relationship between zero inflation and the mean count</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dr_linked <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(fit_linked)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>g0 <span class="ot">&lt;-</span> dr_linked<span class="sc">$</span>b_g0_Intercept</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> dr_linked<span class="sc">$</span>b_g1_Intercept</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sampled combinations of area, year, and season.</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>cells <span class="ot">&lt;-</span> <span class="fu">unique</span>(snapper[, <span class="fu">c</span>(<span class="st">"area"</span>, <span class="st">"reserve"</span>, <span class="st">"year"</span>, <span class="st">"season"</span>)])</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>pi_cells     <span class="ot">&lt;-</span> <span class="fu">posterior_epred</span>(fit_linked, <span class="at">newdata =</span> cells, <span class="at">dpar =</span> <span class="st">"zi"</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>lambda_cells <span class="ot">&lt;-</span> <span class="fu">posterior_epred</span>(fit_linked, <span class="at">newdata =</span> cells, <span class="at">dpar =</span> <span class="st">"mu"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>pi_out <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(pi_cells[, cells<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"outside"</span>])</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>pi_in  <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(pi_cells[, cells<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>])</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">median</span>(g1) <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_linked <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather_draws</span>(b_g0_Intercept, b_g1_Intercept) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median_qi</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  .variable      .value .lower .upper .width .point .interval
+  &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+1 b_g0_Intercept  0.313 -0.921  1.54    0.95 median qi       
+2 b_g1_Intercept -1.52  -2.51  -0.764   0.95 median qi       </code></pre>
+</div>
 </div>
 <p>The probability of an excess zero decreased as the mean count increased, with a posterior median for <span class="math inline">\(\gamma_1\)</span> of −1.52 (95% credible interval −2.51 to −0.76), and for <span class="math inline">\(\gamma_0\)</span> of 0.31 (−0.92 to 1.54) (<a href="#fig-link" class="quarto-xref">Figure&nbsp;2</a>). Averaged over the 72 sampled combinations of area, year, and season, the probability of an excess zero was 0.68 (0.49 to 0.79) outside the reserve and 0.19 (0.09 to 0.27) inside.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lambda_med <span class="ot">&lt;-</span> <span class="fu">apply</span>(lambda_cells, <span class="dv">2</span>, median)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">exp</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>(<span class="fu">min</span>(lambda_med) <span class="sc">/</span> <span class="dv">2</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>(<span class="fu">max</span>(lambda_med) <span class="sc">*</span> <span class="dv">2</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">100</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>curve_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda =</span> grid,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">med    =</span> <span class="fu">sapply</span>(</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    grid,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(l) {</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">median</span>(<span class="fu">plogis</span>(g0 <span class="sc">+</span> g1 <span class="sc">*</span> <span class="fu">log</span>(l)))</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2012</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>draw_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_along</span>(g0), <span class="dv">100</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    draw_ids,</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(i) {</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">data.frame</span>(</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">draw   =</span> i,</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">lambda =</span> grid,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">pi     =</span> <span class="fu">plogis</span>(g0[i] <span class="sc">+</span> g1[i] <span class="sc">*</span> <span class="fu">log</span>(grid))</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>cells_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda  =</span> lambda_med,</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">pi      =</span> <span class="fu">apply</span>(pi_cells, <span class="dv">2</span>, median),</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">reserve =</span> cells<span class="sc">$</span>reserve</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> draws_df,</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">x     =</span> lambda,</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">y     =</span> pi,</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> draw</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour    =</span> <span class="st">"grey60"</span>,</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha     =</span> <span class="fl">0.3</span>,</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> curve_df,</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> lambda,</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> med</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.9</span></span>
+<details class="code-fold">
+<summary>Code for the figure</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The relationship for every posterior draw, over a grid of lambda.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>curves <span class="ot">&lt;-</span> link_draws <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(<span class="at">lambda =</span> <span class="fu">exp</span>(<span class="fu">seq</span>(<span class="fu">log</span>(<span class="fl">0.1</span>), <span class="fu">log</span>(<span class="dv">20</span>), <span class="at">length.out =</span> <span class="dv">100</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pi =</span> <span class="fu">plogis</span>(b_g0_Intercept <span class="sc">+</span> b_g1_Intercept <span class="sc">*</span> <span class="fu">log</span>(lambda)))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>median_curve <span class="ot">&lt;-</span> curves <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(lambda) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pi =</span> <span class="fu">median</span>(pi))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2012</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>curves_100 <span class="ot">&lt;-</span> curves <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.draw <span class="sc">%in%</span> <span class="fu">sample</span>(<span class="fu">unique</span>(.draw), <span class="dv">100</span>))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior medians of lambda and pi for each sampled combination.</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>cell_points <span class="ot">&lt;-</span> pred_draws <span class="sc">|&gt;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(area, reserve, year, season) <span class="sc">|&gt;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lambda  =</span> <span class="fu">median</span>(mu),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pi      =</span> <span class="fu">median</span>(zi),</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> curves_100,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">x     =</span> lambda,</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">y     =</span> pi,</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> .draw</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour    =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha     =</span> <span class="fl">0.3</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> median_curve,</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> lambda,</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> pi</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.9</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cell_points,</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> lambda,</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> pi,</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">colour =</span> reserve</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">outside =</span> <span class="st">"#D55E00"</span>,</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">inside  =</span> <span class="st">"#0072B2"</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cells_df,</span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> lambda,</span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> pi,</span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">colour =</span> reserve</span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span></span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>      <span class="at">outside =</span> <span class="st">"#D55E00"</span>,</span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>      <span class="at">inside  =</span> <span class="st">"#0072B2"</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">x      =</span> <span class="fu">expression</span>(<span class="st">"Mean of the negative binomial component ("</span> <span class="sc">*</span> lambda <span class="sc">*</span> <span class="st">")"</span>),</span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">y      =</span> <span class="fu">expression</span>(<span class="st">"Probability of an excess zero ("</span> <span class="sc">*</span> pi <span class="sc">*</span> <span class="st">")"</span>),</span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Reserve status"</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">x      =</span> <span class="fu">expression</span>(<span class="st">"Mean of the negative binomial component ("</span> <span class="sc">*</span> lambda <span class="sc">*</span> <span class="st">")"</span>),</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">y      =</span> <span class="fu">expression</span>(<span class="st">"Probability of an excess zero ("</span> <span class="sc">*</span> pi <span class="sc">*</span> <span class="st">")"</span>),</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Reserve status"</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-link" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -748,29 +560,35 @@ Figure&nbsp;2: Estimated relationship between the probability of an excess zero,
 </div>
 </div>
 </section>
-<section id="reserve-effect" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Reserve effect</h1>
-<p>The mean count is <span class="math inline">\((1 - \pi)\lambda\)</span>, and <code>posterior_epred()</code> returns this quantity for each observation with <span class="math inline">\(\pi\)</span> computed through the link, so a reserve effect on the scale of the counts can be computed from the fitted model without further coding.</p>
+<section id="reserve-effect" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Reserve effect</h1>
+<p>The reserve effect is the ratio of the mean count inside the reserve to the mean count outside it, computed within each posterior draw from the predicted mean counts in <code>pred_draws</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mu_cells <span class="ot">&lt;-</span> <span class="fu">posterior_epred</span>(fit_linked, <span class="at">newdata =</span> cells)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># posterior_epred() should equal (1 - pi) * lambda for every cell and draw.</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>(<span class="fu">abs</span>(mu_cells <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> pi_cells) <span class="sc">*</span> lambda_cells) <span class="sc">/</span> mu_cells) <span class="sc">&lt;</span> <span class="fl">1e-8</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>mu_out <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mu_cells[, cells<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"outside"</span>])</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>mu_in  <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mu_cells[, cells<span class="sc">$</span>reserve <span class="sc">==</span> <span class="st">"inside"</span>])</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ratio  <span class="ot">&lt;-</span> mu_in <span class="sc">/</span> mu_out</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># The text below states that this estimate is smaller than the published 16.36.</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">median</span>(ratio) <span class="sc">&lt;</span> <span class="fl">0.8</span> <span class="sc">*</span> <span class="fl">16.36</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>reserve_effect <span class="ot">&lt;-</span> pred_draws <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.draw, reserve) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_count =</span> <span class="fu">mean</span>(.epred),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups    =</span> <span class="st">"drop"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from  =</span> reserve,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> mean_count</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio =</span> inside <span class="sc">/</span> outside)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>reserve_effect <span class="sc">|&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median_qi</span>(ratio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+  ratio .lower .upper .width .point .interval
+  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+1  11.1   7.46   16.7   0.95 median qi       </code></pre>
 </div>
-<p>Averaged over the 72 sampled combinations of area, year, and season, with equal weight for each, mean counts were 11.1 (7.5 to 16.7) times greater inside the reserve than outside. This ratio applies to the areas and years that were sampled, and does not include the variation expected among new areas or years.</p>
-<p>The reserve effect estimated here is smaller than the posterior median of 16.36 reported by <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span> and the 16.0 reported for Hahei by <span class="citation" data-cites="smith2014">Smith et al. (<a href="#ref-smith2014" role="doc-biblioref">2014</a>)</span>, because both papers evaluated <span class="math inline">\((1 - \pi)\lambda\)</span> with the area, year, and season effects set to zero, instead of averaging <span class="math inline">\((1 - \pi)\lambda\)</span> over the sampled combinations. Because <span class="math inline">\((1 - \pi)\lambda\)</span> is a non-linear function of the linear predictor, the mean of <span class="math inline">\((1 - \pi)\lambda\)</span> over the area, year, and season effects differs from <span class="math inline">\((1 - \pi)\lambda\)</span> evaluated at zero effects.</p>
+</div>
+<p>Averaged over the 72 sampled combinations of area, year, and season, with equal weight for each, mean counts were 11.1 (7.5 to 16.7) times greater inside the reserve than outside. This ratio applies to the areas and years that were sampled, and does not include the variation expected among new areas or years. The ratio is smaller than the 16.4 reported by <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>, which evaluated <span class="math inline">\((1 - \pi)\lambda\)</span> at zero area, year, and season effects instead of averaging it over them.</p>
 </section>
-<section id="other-implementations" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Other implementations</h1>
+<section id="other-implementations" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Other implementations</h1>
 <p><span class="citation" data-cites="anderson2022">Anderson et al. (<a href="#ref-anderson2022" role="doc-biblioref">2022</a>)</span> fitted the zero-inflated negative binomial with the link of <span class="citation" data-cites="smith2012">Smith et al. (<a href="#ref-smith2012" role="doc-biblioref">2012</a>)</span>, which they called ZINBL, by maximum likelihood in the R package <a href="https://primer-e.github.io/senlm/">senlm</a>, with a non-linear function for the mean response of a species along a single environmental gradient. <span class="citation" data-cites="rabel2023">Rabel (<a href="#ref-rabel2023" role="doc-biblioref">2023</a>)</span> fitted a Bayesian version in Stan, also along a single gradient, in the R package <a href="https://hdrab127.github.io/modskurt/">modskurt</a> (<a href="https://github.com/hdrab127/modskurt">source on GitHub</a>), with <span class="math inline">\(\pi\)</span> linked to the mean count divided by the peak mean count along the gradient, rather than to the log of the mean count.</p>
 </section>
 <section id="references" class="level1 unnumbered">
@@ -779,20 +597,11 @@ Figure&nbsp;2: Estimated relationship between the probability of an excess zero,
 <div id="ref-anderson2022" class="csl-entry" role="listitem">
 Anderson, Marti J., Daniel C. I. Walsh, Winston L. Sweatman, and Andrew J. Punnett. 2022. <span>“Non-Linear Models of Species’ Responses to Environmental and Spatial Gradients.”</span> <em>Ecology Letters</em> 25: 2739–52. <a href="https://doi.org/10.1111/ele.14121">https://doi.org/10.1111/ele.14121</a>.
 </div>
-<div id="ref-borregaard2010" class="csl-entry" role="listitem">
-Borregaard, Michael K., and Carsten Rahbek. 2010. <span>“Causality of the Relationship Between Geographic Distribution and Species Abundance.”</span> <em>The Quarterly Review of Biology</em> 85 (1): 3–25. <a href="https://doi.org/10.1086/650265">https://doi.org/10.1086/650265</a>.
-</div>
-<div id="ref-brown1984" class="csl-entry" role="listitem">
-Brown, James H. 1984. <span>“On the Relationship Between Abundance and Distribution of Species.”</span> <em>The American Naturalist</em> 124 (2): 255–79. <a href="https://doi.org/10.1086/284267">https://doi.org/10.1086/284267</a>.
-</div>
 <div id="ref-burkner2017" class="csl-entry" role="listitem">
 Bürkner, Paul-Christian. 2017. <span>“<span class="nocase">brms</span>: An <span>R</span> Package for <span>B</span>ayesian Multilevel Models Using <span>S</span>tan.”</span> <em>Journal of Statistical Software</em> 80 (1): 1–28. <a href="https://doi.org/10.18637/jss.v080.i01">https://doi.org/10.18637/jss.v080.i01</a>.
 </div>
 <div id="ref-burkner2018" class="csl-entry" role="listitem">
 Bürkner, Paul-Christian. 2018. <span>“Advanced <span>B</span>ayesian Multilevel Modeling with the <span>R</span> Package <span class="nocase">brms</span>.”</span> <em>The R Journal</em> 10 (1): 395–411. <a href="https://doi.org/10.32614/RJ-2018-017">https://doi.org/10.32614/RJ-2018-017</a>.
-</div>
-<div id="ref-lambert1992" class="csl-entry" role="listitem">
-Lambert, Diane. 1992. <span>“Zero-Inflated <span>P</span>oisson Regression, with an Application to Defects in Manufacturing.”</span> <em>Technometrics</em> 34 (1): 1–14. <a href="https://doi.org/10.2307/1269547">https://doi.org/10.2307/1269547</a>.
 </div>
 <div id="ref-lunn2009" class="csl-entry" role="listitem">
 Lunn, David, David Spiegelhalter, Andrew Thomas, and Nicky Best. 2009. <span>“The <span>BUGS</span> Project: Evolution, Critique and Future Directions.”</span> <em>Statistics in Medicine</em> 28 (25): 3049–67. <a href="https://doi.org/10.1002/sim.3680">https://doi.org/10.1002/sim.3680</a>.
@@ -893,7 +702,8 @@ Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical <span>B</
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -902,8 +712,69 @@ Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical <span>B</
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -917,6 +788,7 @@ Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical <span>B</
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1079,44 +951,54 @@ Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical <span>B</
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1214,6 +1096,9 @@ Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical <span>B</
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
